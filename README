@@ -8,3 +8,5 @@ To Run:
 2) install dependencies ("cpanm --installdeps ." or similar)
 3) start: "plackup lib/Shutterstock/Guestbook/Web.pm"
 
+Then point your browser to http://localhost:5000
+
