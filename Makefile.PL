@@ -11,6 +11,7 @@ require 'maint/Makefile.PL.include'
 requires 'Web::Simple';
 requires 'HTML::Zoom';
 requires 'Plack';
+requires 'HTTP::Throwable';
 
 test_requires 'Test::Most';
 tests_recursive;

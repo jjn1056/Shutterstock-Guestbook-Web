@@ -2,6 +2,7 @@ package Shutterstock::Guestbook::Web;
 
 use Web::Simple;
 use HTML::Zoom;
+use HTTP::Throwable::Factory 'http_exception';
 
 sub default_config { template => 'share/html/page.html' }
 
@@ -22,8 +23,7 @@ sub dispatch_request {
   },
   sub (POST + %name=&comment=) {
     shift->add_to_log(@_);
-    [302, [Location=>'/'],
-    ['The resource is in a different location']];
+    http_exception(Found => { location => '/' });
   },
 }
 
