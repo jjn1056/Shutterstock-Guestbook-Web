@@ -3,14 +3,16 @@ package Shutterstock::Guestbook::Web;
 use Web::Simple;
 use HTML::Zoom;
 
-has template => (
-  is => 'ro',
-  default => sub { 'share/html/page.html' },
-);
+sub default_config { template => 'share/html/page.html' }
 
 has log => (
   is => 'rw',
   default => sub { +[] },
+);
+
+has zoom => (
+  is => 'ro',
+  default => sub { HTML::Zoom->from_file(shift->config->{template}) },
 );
 
 sub dispatch_request {
@@ -36,7 +38,8 @@ sub build_page {
     }
   } @{$self->log};
 
-  HTML::Zoom->from_file($self->template)
+  $self
+    ->zoom
     ->repeat_content('#comments' => \@transforms)
     ->to_fh;
 }
