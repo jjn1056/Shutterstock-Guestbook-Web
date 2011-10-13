@@ -5,8 +5,8 @@ use Moo;
 has name => (
   is => 'ro',
   required => 1,
-)
-;
+);
+
 has comment => (
   is => 'ro',
   required => 1,
