@@ -20,11 +20,11 @@ has zoom => (
 
 sub render_to_fh {
   my @transforms = map {
-    my $entry = $_;
+    my ($name, $comment, $time) = ($_->name, $_->comment, $_->time);
     sub {
-      $_->replace_content('.name' => $entry->name)
-        ->replace_content('.comment' => $entry->comment)
-        ->replace_content('.time' => $entry->time);
+      $_->replace_content('.name' => $name)
+        ->replace_content('.comment' => $comment)
+        ->replace_content('.time' => $time);
     }
   } (my $self = shift)->message_log->entry_list;
 
