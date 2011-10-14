@@ -30,7 +30,7 @@ has zoom => (
   default => sub {
     HTML::Zoom
       ->from_file($_[0]->template)
-      ->replace_content('#main-content' => \$_[0]->content_html )
+      ->replace_content('#main-content' => \$_[0]->content_html)
   },
 );
 
@@ -46,7 +46,7 @@ sub render_to_fh {
 
   $self
     ->zoom
-        ->repeat_content('#comments' => \@transforms)
+    ->repeat_content('#comments' => \@transforms)
     ->to_fh;
 }
 
