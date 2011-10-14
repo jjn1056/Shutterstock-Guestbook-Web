@@ -1,7 +1,7 @@
 package Shutterstock::Guestbook::Log;
 
 use Moo;
-use Shutterstock::Guestbook::Entry;
+use Shutterstock::Guestbook::_Entry;
 
 has entries => (
   is => 'rw',
@@ -10,7 +10,7 @@ has entries => (
 
 sub create_entry {
   my ($self, $name, $comment) = @_;
-  Shutterstock::Guestbook::Entry->
+  Shutterstock::Guestbook::_Entry->
     new(name => $name, comment => $comment);
 }
 
