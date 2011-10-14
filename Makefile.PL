@@ -4,7 +4,7 @@ use strict;
 use warnings;
 use inc::Module::Install;
 
-all_from 'lib/Shutterstock/Guestbook/Web.pm';
+all_from 'lib/Shutterstock/Guestbook.pm';
 require 'maint/Makefile.PL.include'
   if $Module::Install::AUTHOR;
 
