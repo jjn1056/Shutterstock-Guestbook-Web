@@ -21,8 +21,8 @@ sub add_entry {
 }
 
 sub create_and_add_entry {
-  my $self = shift;
-  my $comment = $self->create_entry(@_);
+  my $comment = (my $self = shift)
+    ->create_entry(@_);
   $self->add_entry($comment);
 }
 
