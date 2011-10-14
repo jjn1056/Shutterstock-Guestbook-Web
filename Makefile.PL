@@ -12,6 +12,8 @@ requires 'Web::Simple';
 requires 'HTML::Zoom';
 requires 'Plack';
 requires 'HTTP::Throwable';
+requires 'Text::Markdown';
+requires 'IO::All';
 
 test_requires 'Test::Most';
 tests_recursive;

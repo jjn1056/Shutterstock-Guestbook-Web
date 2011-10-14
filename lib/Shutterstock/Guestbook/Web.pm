@@ -5,7 +5,10 @@ use Shutterstock::Guestbook::MessageLog;
 use Shutterstock::Guestbook::Page;
 use HTTP::Throwable::Factory 'http_exception';
 
-sub default_config { template => 'share/html/page.html' }
+sub default_config {
+  template => 'share/html/page.html',
+  content_file => 'README.mkdn',
+}
 
 has message_log => (
   is => 'ro',
@@ -20,6 +23,7 @@ has page => (
 sub _build_page {
   Shutterstock::Guestbook::Page->new(
     template => $_[0]->config->{template},
+    content_file => $_[0]->config->{content_file},
     message_log => $_[0]->message_log,
   );
 }

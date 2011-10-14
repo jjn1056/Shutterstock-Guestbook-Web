@@ -1,11 +1,11 @@
 <html>
   <head>
     <title>My Awesome Page</title>
+    <link href="http://cachedcommons.org/cache/blueprint/0.9.1/stylesheets/screen-min.css"
+        type="text/css" rel="Stylesheet" />
   </head>
-  <body>
-    <h1>My Awesome Page</h1>
-    <p>Here's is the great content...</p>
-    <hr/>
+  <body class="container">
+    <div id="main-content">Here's is the great content...</div>
     <h1>Comments</h1>
     <dl id="comments">
       <dt>Name</dt>
@@ -18,10 +18,14 @@
     <form method="post">
       <fieldset>
         <legend>New Comment</legend>
-        <label for="name">Name</label>
-        <input type="text" name="name"/>
-        <label for="comment">Comment</label>
+        <p>
+          <label for="name">Name</label><br/>
+          <input type="text" name="name"/>
+        </p>
+        <p>
+        <label for="comment">Comment</label><br/>
         <textarea name="comment"></textarea>
+        </p>
         <input type="submit" />
       </fieldset>
     </form>
