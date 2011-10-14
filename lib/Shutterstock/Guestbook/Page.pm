@@ -3,7 +3,7 @@ package Shutterstock::Guestbook::Page;
 use Moo;
 use HTML::Zoom;
 
-has log => (
+has message_log => (
   is => 'ro',
   required => 1,
 );
@@ -21,13 +21,13 @@ has zoom => (
 sub render_to_fh {
   my $self = shift;
   my @transforms = map {
-    my $log = $_;
+    my $entry = $_;
     sub {
-      $_->replace_content('.name' => $log->name)
-        ->replace_content('.comment' => $log->comment)
-        ->replace_content('.time' => $log->time);
+      $_->replace_content('.name' => $entry->name)
+        ->replace_content('.comment' => $entry->comment)
+        ->replace_content('.time' => $entry->time);
     }
-  } $self->log->entry_list;
+  } $self->message_log->entry_list;
 
   $self
     ->zoom

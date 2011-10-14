@@ -1,15 +1,15 @@
 package Shutterstock::Guestbook::Web;
 
 use Web::Simple;
-use Shutterstock::Guestbook::Log;
+use Shutterstock::Guestbook::MessageLog;
 use Shutterstock::Guestbook::Page;
 use HTTP::Throwable::Factory 'http_exception';
 
 sub default_config { template => 'share/html/page.html' }
 
-has log => (
+has message_log => (
   is => 'ro',
-  default => sub { Shutterstock::Guestbook::Log->new },
+  default => sub { Shutterstock::Guestbook::MessageLog->new },
 );
 
 has page => (
@@ -20,7 +20,7 @@ has page => (
 sub _build_page {
   Shutterstock::Guestbook::Page->new(
     template => $_[0]->config->{template},
-    log => $_[0]->log,
+    message_log => $_[0]->message_log,
   );
 }
 
@@ -30,7 +30,7 @@ sub dispatch_request {
     [200, ['Content-type'=>'text/html'], $fh];
   },
   sub (POST + %name=&comment=) {
-    shift->log->create_and_add_entry(@_);
+    shift->message_log->create_and_add_entry(@_);
     http_exception(Found => { location => '/' });
   },
 }
