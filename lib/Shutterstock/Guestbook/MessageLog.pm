@@ -15,8 +15,8 @@ sub create_entry {
 }
 
 sub add_entry {
-  my ($self, $comment) = @_;
-  my @comments = ($comment, $self->entry_list);
+  my @comments = ((my $self = shift)
+    ->entry_list, @_);
   $self->entries(\@comments);
 }
 
