@@ -12,7 +12,7 @@ Shutterstock::Guestbook - Example of a Guestbook application
 
 =head1 SYNOPSIS
 
-  use Shutterstock::Guestbook;
+  plackup lib/Shutterstock/Guestbook/Web.pm
 
 =head1 DESCRIPTION
 

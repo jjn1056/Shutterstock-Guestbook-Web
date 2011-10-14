@@ -25,14 +25,18 @@ sub _build_page {
 }
 
 sub dispatch_request {
-  sub (GET) {
-    my $fh = shift->page->render_to_fh;
-    [200, ['Content-type'=>'text/html'], $fh];
+  sub (/) {
+    sub (GET) {
+      my $fh = shift->page->render_to_fh;
+      [200, ['Content-type'=>'text/html'], $fh];
+    },
+    sub (POST + %name=&comment=) {
+      shift->message_log->create_and_add_entry(@_);
+      http_exception(Found => { location => '/' });
+    },
+    sub () { http_exception('MethodNotAllowed') },
   },
-  sub (POST + %name=&comment=) {
-    shift->message_log->create_and_add_entry(@_);
-    http_exception(Found => { location => '/' });
-  },
+  sub () { http_exception('NotFound') },
 }
 
 __PACKAGE__->run_if_script;
