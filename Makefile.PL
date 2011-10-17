@@ -14,6 +14,7 @@ requires 'Plack';
 requires 'HTTP::Throwable';
 requires 'Text::Markdown';
 requires 'IO::All';
+requires 'Class::Load';
 
 test_requires 'Test::Most';
 tests_recursive;

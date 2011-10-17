@@ -38,7 +38,6 @@ sub dispatch_request {
       shift->message_log->create_and_add_entry(@_);
       http_exception(Found => { location => '/' });
     },
-    sub () { http_exception('MethodNotAllowed') },
   },
   sub () { http_exception('NotFound') },
 }
