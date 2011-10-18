@@ -17,5 +17,7 @@ requires 'IO::All';
 requires 'Class::Load';
 
 test_requires 'Test::Most';
+test_requires 'Plack::Test::Agent';
+
 tests_recursive;
 WriteAll;
