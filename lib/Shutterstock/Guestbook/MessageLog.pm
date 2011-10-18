@@ -11,6 +11,7 @@ has store_class => (
 
 has store => (
   is => 'ro',
+  init_arg => undef,
   lazy => 1,
   builder => '_build_store',
 );

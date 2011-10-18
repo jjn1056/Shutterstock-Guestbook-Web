@@ -1,8 +1,8 @@
 package Shutterstock::Guestbook::Web;
 
 use Web::Simple;
-use Shutterstock::Guestbook::MessageLog;
 use Shutterstock::Guestbook::Page;
+use Shutterstock::Guestbook::MessageLog;
 use HTTP::Throwable::Factory 'http_exception';
 
 sub default_config {
