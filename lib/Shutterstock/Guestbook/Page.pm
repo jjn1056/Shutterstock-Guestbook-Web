@@ -35,15 +35,18 @@ has zoom => (
 );
 
 sub render_to_fh {
-  my @transforms = map {
-    my ($name, $comment, $time) = ($_->name, $_->comment, $_->time);
+  my @transforms = (my $self = shift)->message_log->map_entries
+  (
     sub {
-      $_->replace_content('.name' => $name)
-        ->replace_content('.comment' => $comment)
-        ->replace_content('.time' => $time);
+      my ($name, $comment, $time) = @_;
+      sub {
+        $_->replace_content('.name' => $name)
+          ->replace_content('.comment' => $comment)
+          ->replace_content('.time' => $time);
+      }
     }
-  } ((my $self = shift)->message_log->entry_list);
-
+  );
+  
   $self
     ->zoom
     ->repeat_content('#comments' => \@transforms)

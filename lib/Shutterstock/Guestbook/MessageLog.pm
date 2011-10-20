@@ -16,13 +16,14 @@ has store => (
   builder => '_build_store',
 );
 
-sub _build_store {
-  shift->store_class->new;
-}
-
-sub create_entry { shift->store->create_entry(@_) }
-sub add_entry { shift->store->add_entry(@_) }
+sub _build_store { shift->store_class->new }
 sub create_and_add_entry { shift->store->create_and_add_entry(@_) }
-sub entry_list { shift->store->entry_list }
+
+sub map_entries {
+  my ($self, $code) = @_;
+  map {
+    $code->($_->name, $_->comment, $_->time);
+  } $self->store->entry_list;
+}
 
 1;
