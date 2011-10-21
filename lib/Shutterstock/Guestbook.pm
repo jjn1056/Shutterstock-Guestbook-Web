@@ -12,7 +12,7 @@ Shutterstock::Guestbook - Example of a Guestbook application
 
 =head1 SYNOPSIS
 
-  plackup lib/Shutterstock/Guestbook/Web.pm
+    plackup lib/Shutterstock/Guestbook/Web.pm
 
 =head1 DESCRIPTION
 
@@ -23,24 +23,26 @@ used to model systems, or how I would solve my own interview question.
 
 =head2 Install and Run
 
+The following is an overview of how to install and run this application.
+
 =over 4
 
 =item Fork and Clone Repository
 
-* Fork on github L<https://github.com/jjn1056/Shutterstock-Guestbook-Web>
-* clone your fork down to your local system.
+Fork on github L<https://github.com/jjn1056/Shutterstock-Guestbook-Web>, then
+clone your fork down to your local system.
 
 =item Install Depdendencies
 
 From the root of your clone type:
 
-  cpanm --installdeps .
+    cpanm --installdeps .
 
 You may use to setup a L<local::lib> first.  
 
 =item Run the server
 
-  plackup lib/Shutterstock/Guestbook/Web.pm
+    plackup lib/Shutterstock/Guestbook/Web.pm
 
 Then point your browser to http://localhost:5000
 
