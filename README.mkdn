@@ -32,6 +32,8 @@ You may use to setup a [local::lib](http://search.cpan.org/perldoc?local::lib) f
 
 - Run the server
 
+From the commandline and root of your local clone.
+
     plackup lib/Shutterstock/Guestbook/Web.pm
 
 Then point your browser to http://localhost:5000

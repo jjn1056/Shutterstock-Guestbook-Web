@@ -42,6 +42,8 @@ You may use to setup a L<local::lib> first.
 
 =item Run the server
 
+From the commandline and root of your local clone.
+
     plackup lib/Shutterstock/Guestbook/Web.pm
 
 Then point your browser to http://localhost:5000
