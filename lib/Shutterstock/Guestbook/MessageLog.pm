@@ -5,11 +5,12 @@ use Class::Load 'load_class';
 
 has store_class => (
   is => 'ro',
-  default => sub {'Shutterstock::Guestbook::ArrayStore'},
-  coerce => sub {load_class $_[0]; $_[0]},
+  isa => sub { $_[0]->does('Shutterstock::Guestbook::canStore') },
+  default => sub { 'Shutterstock::Guestbook::Store::Memory' },
+  coerce => sub { load_class $_[0]; $_[0] },
 );
 
-has store => (
+has _store => (
   is => 'ro',
   init_arg => undef,
   lazy => 1,
@@ -17,13 +18,7 @@ has store => (
 );
 
 sub _build_store { shift->store_class->new }
-sub create_and_add_entry { shift->store->create_and_add_entry(@_) }
-
-sub map_entries {
-  my ($self, $code) = @_;
-  map {
-    $code->($_->name, $_->comment, $_->time);
-  } $self->store->entry_list;
-}
+sub create_and_add_entry { shift->_store->create_and_add_entry(@_) }
+sub map_entries { shift->_store->map_entries(@_) }
 
 1;
