@@ -18,15 +18,33 @@ Shutterstock::Guestbook - Example of a Guestbook application
 
 This is an example web application using L<Web::Simple>, L<Moo> and L<HTML::Zoom>.
 
-Written in support of tech talk
+Written in support of tech talk.  The goal here is to explain a thinking process
+used to model systems, or how I would solve my own interview question.
 
-To Run:
+=head2 Install and Run
 
-1) clone repository
-2) install dependencies ("cpanm --installdeps ." or similar)
-3) start: "plackup lib/Shutterstock/Guestbook/Web.pm"
+=over 4
+
+=item Fork and Clone Repository
+
+* Fork on github L<https://github.com/jjn1056/Shutterstock-Guestbook-Web>
+* clone your fork down to your local system.
+
+=item Install Depdendencies
+
+From the root of your clone type:
+
+  cpanm --installdeps .
+
+You may use to setup a L<local::lib> first.  
+
+=item Run the server
+
+  plackup lib/Shutterstock/Guestbook/Web.pm
 
 Then point your browser to http://localhost:5000
+
+=back
 
 =head1 AUTHOR
 

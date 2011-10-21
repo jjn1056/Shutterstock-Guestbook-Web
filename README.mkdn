@@ -10,13 +10,27 @@ Shutterstock::Guestbook - Example of a Guestbook application
 
 This is an example web application using [Web::Simple](http://search.cpan.org/perldoc?Web::Simple), [Moo](http://search.cpan.org/perldoc?Moo) and [HTML::Zoom](http://search.cpan.org/perldoc?HTML::Zoom).
 
-Written in support of tech talk
+Written in support of tech talk.  The goal here is to explain a thinking process
+used to model systems, or how I would solve my own interview question.
 
-To Run:
+## Install and Run
 
-1) clone repository
-2) install dependencies ("cpanm --installdeps ." or similar)
-3) start: "plackup lib/Shutterstock/Guestbook/Web.pm"
+- Fork and Clone Repository
+
+* Fork on github [https://github.com/jjn1056/Shutterstock-Guestbook-Web](https://github.com/jjn1056/Shutterstock-Guestbook-Web)
+* clone your fork down to your local system.
+
+- Install Depdendencies
+
+From the root of your clone type:
+
+  cpanm --installdeps .
+
+You may use to setup a [local::lib](http://search.cpan.org/perldoc?local::lib) first.  
+
+- Run the server
+
+  plackup lib/Shutterstock/Guestbook/Web.pm
 
 Then point your browser to http://localhost:5000
 
