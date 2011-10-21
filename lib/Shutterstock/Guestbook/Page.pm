@@ -20,19 +20,17 @@ has content_file => (
   required => 1,
 );
 
-has content_html => (
-  is => 'ro',
-  default => sub { markdown io(shift->content_file)->all } 
-);
-
 has zoom => (
   is => 'ro',
-  default => sub {
-    HTML::Zoom
-      ->from_file($_[0]->template)
-      ->replace_content('#main-content' => \$_[0]->content_html)
-  },
+  builder => '_build_zoom',
 );
+
+sub _build_zoom {
+  my $content = markdown io((my $self = shift)->content_file)->all;
+  HTML::Zoom
+    ->from_file($self->template)
+    ->replace_content('#main-content' => \$content)
+}
 
 sub render_to_fh {
   my @transforms = (my $self = shift)->message_log->map_entries
