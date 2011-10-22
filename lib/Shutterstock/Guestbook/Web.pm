@@ -17,6 +17,7 @@ has message_log => (
 
 has page => (
   is => 'ro',
+  lazy => 1,
   builder => '_build_page',
 );
 
