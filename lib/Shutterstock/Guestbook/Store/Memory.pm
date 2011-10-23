@@ -3,10 +3,12 @@ package Shutterstock::Guestbook::Store::Memory;
 use Moo;
 use Class::Load 'load_class';
 
+sub DEFAULT_ENTRY_CLASS { 'Shutterstock::Guestbook::Store::_Entry' }
+
 has _entry_class => (
   is => 'ro',
-  default => sub { 'Shutterstock::Guestbook::Store::_Entry' },
-  coerce => sub { load_class($_[0]) ? $_[0] : die "Can't Load $_[0]" },
+  default => sub { DEFAULT_ENTRY_CLASS },
+  coerce => sub { load_class $_[0]; $_[0] },
 );
 
 has _entries => (
