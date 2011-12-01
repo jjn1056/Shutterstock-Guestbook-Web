@@ -3,6 +3,7 @@ package Shutterstock::Guestbook::Web;
 use Web::Simple;
 use Shutterstock::Guestbook::Page;
 use Shutterstock::Guestbook::MessageLog;
+use Shutterstock::Guestbook::Store::Memory;
 use HTTP::Throwable::Factory 'http_exception';
 
 sub default_config {
@@ -12,7 +13,11 @@ sub default_config {
 
 has message_log => (
   is => 'ro',
-  default => sub { Shutterstock::Guestbook::MessageLog->new },
+  default => sub {
+    Shutterstock::Guestbook::MessageLog->new(
+      store => Shutterstock::Guestbook::Store::Memory->new,
+    )
+  },
 );
 
 has page => (
@@ -30,17 +35,17 @@ sub _build_page {
 }
 
 sub dispatch_request {
-  sub (/) {
-    sub (GET) {
+  sub(/) {
+    sub(GET) {
       my $fh = shift->page->render_to_fh;
       [200, ['Content-type'=>'text/html'], $fh];
     },
     sub (POST + %name=&comment=) {
       shift->message_log->create_and_add_entry(@_);
       http_exception(Found => { location => '/' });
-    },
-  },
-  sub () { http_exception('NotFound') },
+    }
+  }
 }
 
 __PACKAGE__->run_if_script;
+

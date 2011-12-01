@@ -1,17 +1,9 @@
 package Shutterstock::Guestbook::Store::Memory;
 
 use Moo;
-use Class::Load 'load_class';
+use Shutterstock::Guestbook::Store::_Entry;
 
 with 'Shutterstock::Guestbook::Store';
-
-sub DEFAULT_ENTRY_CLASS { 'Shutterstock::Guestbook::Store::_Entry' }
-
-has _entry_class => (
-  is => 'ro',
-  default => sub { DEFAULT_ENTRY_CLASS },
-  coerce => sub { load_class $_[0]; $_[0] },
-);
 
 has _entries => (
   is => 'rw',
@@ -20,7 +12,7 @@ has _entries => (
 
 sub create_entry {
   my ($self, $name, $comment) = @_;
-  $self->_entry_class
+  Shutterstock::Guestbook::Store::_Entry
     ->new(name => $name, comment => $comment);
 }
 

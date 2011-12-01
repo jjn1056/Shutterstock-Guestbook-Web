@@ -13,7 +13,7 @@ has message_log => (
 has template => (
   is => 'ro',
   required => 1,
-); 
+);
 
 has content_file => (
   is => 'ro',
@@ -44,7 +44,7 @@ sub render_to_fh {
       }
     }
   );
-  
+
   $self
     ->zoom
     ->repeat_content('#comments' => \@transforms)
